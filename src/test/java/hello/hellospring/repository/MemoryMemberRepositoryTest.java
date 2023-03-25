@@ -10,5 +10,6 @@ class MemoryMemberRepositoryTest {  //다른데서 가져다 쓸게 아님으로
     public void save() {
         Member member = new Member();
 
+
     }
 }
