@@ -1,6 +1,7 @@
 package hello.hellospring.repository;
 
 import hello.hellospring.domain.Member;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
@@ -12,37 +13,26 @@ public class MemoryMemberRepository implements MemberRepository {
 
     @Override
     public Member save(Member member) {
-        member.setId(++sequence);   //사용자가 적는 아이디 세팅
-        store.put(member.getId(), member);  //스토어에 저장되면서 map에도 저장
+        member.setId(++sequence);
+        store.put(member.getId(), member); //이름은 이미 넘어왔고 id를 스토어에 저장
         return member;
     }
-
     @Override
-    public Optional<Member> findById(Long id) { //스토어에서 꺼내기 -> 얻은getId 넣기
+    public Optional<Member> findById(Long id) {
         return Optional.ofNullable(store.get(id));
     }
 
     @Override
-    public Optional<Member> findByName(Long name) {
+    public List<Member> findAll() {
+        return new ArrayList<>(store.values());
+    }
+    @Override
+    public Optional<Member> findByName(String name) {
         return store.values().stream()
                 .filter(member -> member.getName().equals(name))
                 .findAny();
     }
-
-    @Override
-    public List<Member> findAll() {
-        return new ArrayList<>(store.values()); // store.values()는 Member 이다.
-
+    public void clearStore() {
+        store.clear();
     }
-
-
-
-
-
-
-
-
-
-
-
 }

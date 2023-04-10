@@ -1,10 +1,10 @@
 package hello.hellospring.domain;
 
 public class Member {
-    private Long id;  // 고객을 구분하기 위한 시스템에서 정하는 id
+    private Long id;   // 시스템에서 정해준 id
     private String name;
 
-    public Long getId() {  // cmd+n 으로 getter setter  만들기
+    public Long getId() {
         return id;
     }
 
