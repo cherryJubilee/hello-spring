@@ -1,5 +1,6 @@
 package hello.hellospring.service;
 
+import hello.hellospring.aop.TimeTraceAop;
 import hello.hellospring.repository.JdbcMemberRepository;
 import hello.hellospring.repository.JdbcTemplateMemberRepository;
 import hello.hellospring.repository.MemberRepository;
@@ -24,6 +25,11 @@ public class springConfig {
     public MemberService memberService() {
         return new MemberService(memberRepository);
     }
+
+/*    @Bean
+    public TimeTraceAop timeTraceAop() {
+        return new TimeTraceAop();
+    }*/
 
 /*    @Bean
     //MemberRepository는 인터페이스이고, new와 함께 사용 못함. 구현체인 MemoryMemberRepository 사용해야됨
