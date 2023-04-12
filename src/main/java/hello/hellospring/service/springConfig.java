@@ -13,24 +13,22 @@ import javax.sql.DataSource;
 @Configuration
 public class springConfig {
 
-    private DataSource dataSource;
+    private final MemberRepository memberRepository;
 
-    @Autowired
-    public springConfig(DataSource dataSource) {
-        this.dataSource = dataSource;
+    @Autowired  //생성자 한개 라서 생략 가능
+    public springConfig(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
     }
-
 
     @Bean
     public MemberService memberService() {
-        return new MemberService(memberRepository());
+        return new MemberService(memberRepository);
     }
 
-    @Bean
+/*    @Bean
     //MemberRepository는 인터페이스이고, new와 함께 사용 못함. 구현체인 MemoryMemberRepository 사용해야됨
     public MemberRepository memberRepository() {
-//        return new MemoryMemberRepository();
-//        return new JdbcMemberRepository(dataSource);
-        return new JdbcTemplateMemberRepository(dataSource);
-    }
+공//        return new JdbcMemberRepository(dataSource);
+//        return new JdbcTemplateMemberRepository(dataSource);
+    }*/
 }
